@@ -1,4 +1,2 @@
-package PACKAGE_NAME;
-
-public class Checking {
+public class Checking extends Account {
 }
