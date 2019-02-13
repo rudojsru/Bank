@@ -80,8 +80,54 @@ public class Menu {
     }
 
     private void createAnAccount() {
-        String firstName, lastName, ssn;
-        double initialDeposit;
+        String firstName, lastName, ssn, accountType="";
+        double initialDeposit=0;
+        boolean valid=false;
+        while (!valid){
+            System.out.println("Please enter an account type(checking/saving): ");
+            accountType=keybord.nextLine();
+            if(accountType.equalsIgnoreCase("checking") || accountType.equalsIgnoreCase("saving")){
+                valid =true;
+            }
+            else {
+                System.out.println("Invalid account type selected. Please enter checking or savings.");
+            }
+        }
+        System.out.println("Please enter your first name: ");
+        firstName=keybord.nextLine();
+        System.out.println("Please enter your last name: ");
+        lastName=keybord.nextLine();
+        System.out.println("Please enter your social security number: ");
+        ssn = keybord.nextLine();
+        valid =false;
+        while (!valid){
+            System.out.println("Please enter an initial deposit: ");
+            try{
+                initialDeposit=Double.parseDouble(keybord.nextLine());
+            }catch (NumberFormatException e){
+                System.out.println("Deposit must be a number");
+            }
+            if( accountType.equalsIgnoreCase("checking")){
+               if (initialDeposit <100 )  {
+                 System.out.println("Checking account require a minimum of 100");
+               }else {
+                      valid=true;
+               }
+            }else  if( accountType.equalsIgnoreCase("saving")) {
+                if (initialDeposit < 50) {
+                    System.out.println("Savings account require a minimum of 50 PLN to open");
+                } else {
+                    valid = true;
+                }
+            }
+        }
+        //We can create an account now
+        Account account;
+        if (accountType.equalsIgnoreCase("checking")){
+            account =new Checking(initialDeposit);
+        } else {
+           account =new Savings(initialDeposit);
+        }
     }
 
     private void makeADeposit() {
