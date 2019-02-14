@@ -135,6 +135,7 @@ public class Menu {
 
     private void makeADeposit() {
         int account = selectAccount();
+        if(account >=0){
         System.out.println(" How much would you like to deposit?: ");
         double amount=0;
         try{
@@ -143,9 +144,21 @@ public class Menu {
             amount=0;
         }
         bank.getCustomer(account).getAccount().deposit(amount);
+        }
     }
 
     private void makeAWithdrawal() {
+        int account = selectAccount();
+        if(account >=0){
+            System.out.println(" How much would you like to withdraw?: ");
+            double amount=0;
+            try{
+                amount=Double.parseDouble(keybord.nextLine());
+            }catch (NumberFormatException e) {
+                amount=0;
+            }
+            bank.getCustomer(account).getAccount().withdraw(amount);
+        }
     }
 
     private void listBalances() {
@@ -153,11 +166,23 @@ public class Menu {
 
     private int selectAccount() {
         List<Customer> customers = bank.getCustomers();
+        if(customers.size() <=0){
+            System.out.println("No customers at your bank.");
+            return -1;
+        }
         System.out.println("Select an account");
         for (int i = 0; i < customers.size(); i++) {
-            System.out.println((i+1) + ")" +customers.get(i).getFirstName());
+            System.out.println((i+1) + ")" +customers.get(i).basicInfo());
         }
-        return 0;
+        int account =0;
+        System.out.println("Please enter your selection");
+        try{
+            account = Integer.parseInt(keybord.nextLine())-1;
+        }
+        catch (NumberFormatException e ){
+            account =-1;
+        }
+        return account;
     }
 
 }
