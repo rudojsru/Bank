@@ -128,15 +128,30 @@ public class Menu {
         } else {
            account =new Savings(initialDeposit);
         }
+        Customer customer = new Customer(firstName,lastName, ssn, account);
+        bank.addCustomer(customer);
     }
 
     private void makeADeposit() {
+        int account = selectAccount();
+        System.out.println(" How much would you like to deposit?: ");
+        double amount=0;
+        try{
+            amount=Double.parseDouble(keybord.nextLine());
+        }catch (NumberFormatException e) {
+            amount=0;
+        }
+        bank.getCustomer(account).deposit(amount);
     }
 
     private void makeAWithdrawal() {
     }
 
     private void listBalances() {
+    }
+
+    private int selectAccount() {
+        return 0;
     }
 
 }

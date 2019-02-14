@@ -40,7 +40,7 @@ public class Account {
     }
 
     public void deposit (double amount){
-        if(amount < 0) {
+        if(amount <= 0) {
             System.out.println(" You cannot deposit negative money");
             return;
         }
