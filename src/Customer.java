@@ -12,13 +12,25 @@ public class Customer {
         this.account =account;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
+                "firstName='" + firstName + "\n" +
+                ", lastName='" + lastName + "\\n" +
+                ", ssn='" + ssn + "\n" +
+                ", account=" + account +
+                '}';
+    }
+
+     public String basicInfo() {
+        return
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", ssn='" + ssn + '\'' +
-                ", account=" + account +
-                '}';
+                ", account number=" + account.getAccountNumber();
     }
 }

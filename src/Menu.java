@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
@@ -141,7 +142,7 @@ public class Menu {
         }catch (NumberFormatException e) {
             amount=0;
         }
-        bank.getCustomer(account).deposit(amount);
+        bank.getCustomer(account).getAccount().deposit(amount);
     }
 
     private void makeAWithdrawal() {
@@ -151,6 +152,11 @@ public class Menu {
     }
 
     private int selectAccount() {
+        List<Customer> customers = bank.getCustomers();
+        System.out.println("Select an account");
+        for (int i = 0; i < customers.size(); i++) {
+            System.out.println((i+1) + ")" +customers.get(i).getFirstName());
+        }
         return 0;
     }
 
