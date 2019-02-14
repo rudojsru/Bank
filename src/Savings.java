@@ -5,11 +5,8 @@ public class Savings extends Account {
     Savings(double initialDeposit){
         super();
         this.setBalance(initialDeposit);
-        if(initialDeposit >10000){
-            this.setInterest(5);
-        }else {
-            this.setInterest(2);
-        }
+        this.checkInterest();
+
     }
 
     @Override
@@ -17,7 +14,7 @@ public class Savings extends Account {
         return  "Account Type " + accountType+ "Account\n"+
                 "Account Number "+this.getAccountNumber()+"\n"+
                 "Balance"+this.getBalance()+"\n"+
-                "Interest Rate"+this.getInterest()+"\n";
+                "Interest Rate"+this.getInterest()+"%\n";
 
     }
 }
