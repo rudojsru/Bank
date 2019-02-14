@@ -5,7 +5,7 @@ public class Savings extends Account {
     Savings(double initialDeposit){
         super();
         this.setBalance(initialDeposit);
-        this.checkInterest();
+        this.checkInterest(0);
 
     }
 

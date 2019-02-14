@@ -35,6 +35,7 @@ public class Account {
             return;
         }
         balance -=amount +5;
+        checkInterest(0);
         System.out.println("You have withdrawn "+amount+" dollars and incurred a fee of 5 PLN");
         System.out.println("You have a balance of PLN "+balance);
     }
@@ -44,7 +45,7 @@ public class Account {
             System.out.println(" You cannot deposit negative money");
             return;
         }
-        checkInterest();
+        checkInterest(amount);
         amount = amount +amount *interest;
         balance += amount;
         System.out.println("You have deposited "+amount+" dollars with an interest rate of "+(interest*100)+"%");
@@ -52,8 +53,8 @@ public class Account {
 
     }
 
-    public void checkInterest() {
-        if(balance >100){
+    public void checkInterest(double amount) {
+        if(balance+amount >100){
             interest =0.05;
         } else {
             interest=0.02;

@@ -162,6 +162,11 @@ public class Menu {
     }
 
     private void listBalances() {
+        int account = selectAccount();
+        if(account >=0){
+
+            System.out.println(bank.getCustomer(account).getAccount());
+        }
     }
 
     private int selectAccount() {
@@ -181,6 +186,10 @@ public class Menu {
         }
         catch (NumberFormatException e ){
             account =-1;
+        }
+        if (account <0 || account >customers.size()){
+            System.out.println("Invalid account selected.");
+            return -1;
         }
         return account;
     }
